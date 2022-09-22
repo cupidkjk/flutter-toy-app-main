@@ -1,0 +1,80 @@
+
+<details>
+<summary>code sample</summary>
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() async {
+  runApp(MaterialApp(
+    home: ThingsOverview(),
+  ));
+}
+
+class ThingsOverview extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: SizedBox(height: 12)),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) => _MyListItem(index),
+              childCount: 20,
+            ),
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => null,
+      ),
+    );
+  }
+}
+
+class _MyListItem extends StatelessWidget {
+  final int index;
+
+  _MyListItem(this.index, {Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => null,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: LimitedBox(
+            maxHeight: 80,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(index.toString()),
+                    ),
+                  ],
+                ),
+                Divider(),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        index.toString(),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+</details>
+
